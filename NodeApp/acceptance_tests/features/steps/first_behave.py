@@ -24,6 +24,14 @@ def step_impl(context):
 
 @then(u'I verify the title and body are what I expect')
 def step_impl(context):
-    print(context.browser.title)
     assert 'Express' in context.browser.title
+
+@given(u'I call root end point')
+def step_impl(context):
+    context.response = context.requests.get("http://localhost:3000")
+
+@then(u'I verify successful response')
+def step_impl(context):
+    assert context.response.status_code == 200
+
 

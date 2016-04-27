@@ -1,4 +1,5 @@
 from selenium import webdriver
+import requests
 
 
 def before_all(context):
@@ -12,6 +13,7 @@ def before_feature(context, feature):
 
 
 def before_scenario(context, scenario):
+    context.requests = requests
     context.browser = webdriver.Chrome()
     print("Before scenario\n")
 
