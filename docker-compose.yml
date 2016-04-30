@@ -1,4 +1,7 @@
-nginx:
+version: "2"
+
+services:
+  nginx:
     build: ./MyNginx
     links:
         - node1:node1
@@ -10,16 +13,15 @@ nginx:
         - node3
     ports:
         - "80:80"
-node1:
+  node1:
     build: ./NodeApp
     ports:
         - "3000"
-node2:
-    build: ./NodeApp
-    ports:
-        - "8080"
-node3:
+  node2:
     build: ./NodeApp
     ports:
         - "3000"
-
+  node3:
+    build: ./NodeApp
+    ports:
+        - "3000"

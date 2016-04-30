@@ -38,4 +38,4 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 EXPOSE 80 443
 
-CMD dockerize -template /etc/nginx/nginx.tmpl:/etc/nginx/nginx.conf -stdout /var/log/nginx/access.log -stderr /var/log/nginx/error.log -wait tcp://web:3000  nginx
+CMD dockerize -stdout /var/log/nginx/access.log -stderr /var/log/nginx/error.log -wait tcp://node1:3000  nginx
