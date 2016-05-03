@@ -1,4 +1,4 @@
-#docker build -t "mytlsjenkins" --build-arg dockerhost=$(docker-machine ls --filter name=$(cat docker_machine) --format "{{.URL}}") -f jenkins_tls.dockerfile .
+#docker build -t "mytlsjenkins" --build-arg dockerhost=$(docker-machine ls --filter name=$(cat ../DOCKER_MACHINE_NAME) --format "{{.URL}}") -f jenkins_tls.dockerfile .
 
 # copy the certs created by docker-machine to root of this folder
 # bin/bash copy_certs.sh

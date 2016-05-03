@@ -1,4 +1,4 @@
-# docker build -t "myjenkins" --build-arg dockerhost=$(docker-machine ls --filter name=$(cat docker_machine) --format "{{.URL}}") -f jenkins.dockerfile .
+#docker build -t "myjenkins" --build-arg dockerhost=$(docker-machine ls --filter name=$(cat ../DOCKER_MACHINE_NAME) --format "{{.URL}}") -f jenkins.dockerfile .
 
 # Run as below
 # docker run -d -p 8080:8080 -p 50000:50000 -v /home/docker:/var/jenkins_home myjenkins
