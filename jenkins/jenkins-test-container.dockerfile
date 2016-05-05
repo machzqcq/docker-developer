@@ -31,9 +31,9 @@ RUN mkdir -p /var/run/sshd
 RUN apt-get install -y openjdk-7-jdk
 
 # Add user jenkins to the image
-RUN adduser --quiet jenkins
+RUN useradd -m jenkins  -s /bin/bash -p jenkins -g root -G staff
 # Set password for the jenkins user (you may want to alter this).
-RUN echo "jenkins:jenkins" | chpasswd
+#RUN echo "jenkins:jenkins" | chpasswd
 
 # Standard SSH port
 EXPOSE 22
