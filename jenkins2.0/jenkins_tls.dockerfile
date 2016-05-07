@@ -15,9 +15,8 @@ FROM jenkins:2.0
 # export DOCKER_HOST environment variable
 ARG dockerhost
 ENV DOCKER_HOST=$dockerhost
-COPY ca.pem /home/docker/.docker/ca.pem
-COPY cert.pem /home/docker/.docker/cert.pem
-COPY key.pem /home/docker/.docker/key.pem
+COPY ca.pem cert.pem key.pem /home/docker/.docker/
+RUN chown -R jenkins:jenkins /home/docker/.docker/
 
 ENV DOCKER_TLS_VERIFY="1"
 ENV DOCKER_CERT_PATH=/home/docker/.docker
