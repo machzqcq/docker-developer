@@ -3,7 +3,7 @@
 # Pull base image
 FROM node:4.4-wheezy
 # Maintainer
-MAINTAINER pradeep.macharla@inmar.com
+MAINTAINER pradeep@seleniumframework.com
 # Expose ports
 EXPOSE 80 443 3000
 

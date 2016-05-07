@@ -1,6 +1,7 @@
-# Docker file for CentOS with RVM
+# Docker file for Ubuntu with RVM
 FROM ubuntu:14.04
 
+MAINTAINER 
 
 #Enable as jenkins slave
 # Install a basic SSH server
@@ -21,6 +22,7 @@ EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
 
+# Install RVM and add to jenkins profile
 
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.0

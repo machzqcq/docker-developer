@@ -38,4 +38,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 EXPOSE 80 443
 
+# https://github.com/jwilder/dockerize - nginx will wait until web container listens on 8000 - see below
+# Below assuming that web listening port is 3000
 CMD dockerize -stdout /var/log/nginx/access.log -stderr /var/log/nginx/error.log -wait tcp://node1:3000  nginx
+

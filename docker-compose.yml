@@ -16,7 +16,7 @@ services:
     networks:
         - front-tier
   node1:
-    build: ./NodeApp
+    build: ./WebApp
     ports:
         - "3000"
     depends_on:
@@ -25,7 +25,7 @@ services:
         - front-tier
         - back-tier
   node2:
-    build: ./NodeApp
+    build: ./WebApp
     ports:
         - "3000"
     depends_on:
@@ -34,7 +34,7 @@ services:
         - front-tier
         - back-tier
   node3:
-    build: ./NodeApp
+    build: ./WebApp
     ports:
         - "3000"
     depends_on:

@@ -8,5 +8,11 @@
 
 # SonarQube
 
-
 # Jenkins-test-container
+
+# Consul
+
+docker run -d --name=consul -p 8500:8500 gliderlabs/consul-server -bootstrap
+docker run -d --name=registrator --volume=/var/run/docker.sock:/tmp/docker.sock gliderlabs/registrator:latest consul://$(docker-machine ip default):8500
+docker run -d -p 6379:6379 --name=redis redis
+curl http://$(docker-machine ip default):8500/v1/catalog/service/redis | jq '.[0] | "http://" + .Address + ":" + "\(.ServicePort)"'
