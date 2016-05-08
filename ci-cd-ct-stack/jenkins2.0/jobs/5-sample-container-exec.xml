@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.1">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <xyz.quoidneufdocker.jenkins.dockerslaves.spec.ContainerSetDefinition plugin="docker-slaves@0.5">
+      <buildHostImage class="xyz.quoidneufdocker.jenkins.dockerslaves.spec.ImageIdContainerDefinition">
+        <image>pradeep-ruby-jenkins-container</image>
+        <forcePull>false</forcePull>
+      </buildHostImage>
+      <sideContainers class="empty-list"/>
+    </xyz.quoidneufdocker.jenkins.dockerslaves.spec.ContainerSetDefinition>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.1">
+    <script>node(&apos;jenkins-slave&apos;) {
+echo &apos;hello world&apos;
+}</script>
+    <sandbox>false</sandbox>
+  </definition>
+  <triggers/>
+</flow-definition>

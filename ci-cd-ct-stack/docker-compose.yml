@@ -8,6 +8,8 @@ services:
     build: 
       context: ./jenkins2.0
       dockerfile: jenkins_tls.dockerfile
+      args:
+        DOCKER_HOST: $DOCKER_HOST
     volumes:
       - /home/docker:/var/jenkins_home
     depends_on: 
