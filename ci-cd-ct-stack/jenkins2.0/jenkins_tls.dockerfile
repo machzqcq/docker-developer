@@ -37,7 +37,7 @@ USER root
 RUN wget https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz 
 RUN tar xvzf docker-latest.tgz && mv ./docker/* /usr/bin/
 
-COPY jobs/1-echo-docker-host.xml /usr/share/jenkins/ref/jobs/echo-docker-host/config.xml
+COPY jobs/1-echo-docker-host.xml /usr/share/jenkins/ref/jobs/1-echo-docker-host/config.xml
 COPY jobs/2-hello-world.xml /usr/share/jenkins/ref/jobs/2-hello-world/config.xml
 COPY jobs/3-page-object.xml /usr/share/jenkins/ref/jobs/3-page-object/config.xml
 COPY jobs/4-app-build-publish.xml /usr/share/jenkins/ref/jobs/4-app-build-publish/config.xml

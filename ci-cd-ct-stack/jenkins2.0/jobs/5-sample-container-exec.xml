@@ -11,6 +11,10 @@
       </buildHostImage>
       <sideContainers class="empty-list"/>
     </xyz.quoidneufdocker.jenkins.dockerslaves.spec.ContainerSetDefinition>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.1">
     <script>node(&apos;jenkins-slave&apos;) {

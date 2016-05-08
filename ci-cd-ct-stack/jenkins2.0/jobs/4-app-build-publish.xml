@@ -42,16 +42,16 @@
   <builders>
     <hudson.tasks.Shell>
       <command>echo $DOCKER_HOST
-ln -s ./WebApp/Dockerfile Dockerfile
+ln -s ./web_app/Dockerfile Dockerfile
 </command>
     </hudson.tasks.Shell>
     <com.cloudbees.dockerpublish.DockerBuilder plugin="docker-build-publish@1.2.2">
       <server plugin="docker-commons@1.3.1"/>
       <registry plugin="docker-commons@1.3.1">
-        <url>http://localhost:4243</url>
+        <url>http://nexus:14243</url>
         <credentialsId>74449b36-2a46-45fa-ab78-178365154da0</credentialsId>
       </registry>
-      <repoName>nodeapp</repoName>
+      <repoName>webapp</repoName>
       <noCache>false</noCache>
       <forcePull>false</forcePull>
       <buildContext>./web_app</buildContext>
