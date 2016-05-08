@@ -1,5 +1,5 @@
 # This dockerfile is used to build rebates-offermanager-spa
-# docker build -t  "pradeep/NodeApp" -f Dockerfile .
+# docker build -t  "pradeep/web_app" -f Dockerfile .
 # Pull base image
 FROM node:4.4-wheezy
 # Maintainer

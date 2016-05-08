@@ -1,0 +1,94 @@
+version: "2"
+
+networks:
+  ci_net:
+    driver:bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
+        gateway: 172.16.238.1
+      - subnet: 2001:3984:3989::/64
+        gateway: 2001:3984:3989::1
+
+services:
+  jenkins:
+    build: ./jenkins2.0
+    links:
+        - nexus:nexus
+        - sonar:sonar
+        - selgrid:selgrid
+    depends_on:
+        - nexus
+        - sonar
+        - selgrid
+    ports:
+        - "18080:8080"
+        - "50000:50000"
+    networks:
+        - ci_net
+            ipv4_address:172.16.238.10
+            ipv6_address: 2001:3984:3989::10
+
+  nexus:
+    build: ./nexus3
+    ports:
+        - "18081:8081"
+        - "14243:4243"
+    networks:
+        - ci_net
+            ipv4_address: 172.16.238.15
+
+  selhub:
+    image: selenium/hub
+    ports:
+        - :"14444:4444"
+    networks:
+        - ci_net
+            ipv4_address: 172.16.238.20
+  nodech:
+    image: selenium/node-chrome-debug
+    ports:
+        - "15900:5900"
+    depends_on:
+        - selhub
+    networks:
+        - ci_net
+    environment:
+        - HUB_PORT_4444_TCP_ADDR=selhub
+
+  nodeff:
+    image: selenium/node-firefox-debug
+    ports:
+        - "15901:5900"
+    depends_on:
+        - selhub
+    networks:
+        - ci_net
+    environment:
+        - HUB_PORT_4444_TCP_ADDR=selhub
+
+   sonar:
+     build: ./sonar
+     ports:
+       - "19000:9000"
+       - "15432:5432"
+     networks:
+       - ci_net
+           ipv4_address: 172.16.238.25
+     depends_on:
+       - sonardb
+     environment:
+       - SONARQUBE_JDBC_URL=jdbc:postgresql://sonardb:5432/sonar
+
+    sonardb:
+      image:postgres
+      networks:
+       - ci_net
+           ipv4_address: 172.16.238.26
+      environment:
+       - POSTGRES_USER=sonar
+       - POSTGRES_PASSWORD=sonar
+

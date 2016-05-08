@@ -2,7 +2,7 @@ version: "2"
 
 services:
   nginx:
-    build: ./MyNginx
+    build: ./load_balancer
     links:
         - node1:node1
         - node2:node2
@@ -16,7 +16,7 @@ services:
     networks:
         - front-tier
   node1:
-    build: ./WebApp
+    build: ./web_app
     ports:
         - "3000"
     depends_on:
@@ -25,7 +25,7 @@ services:
         - front-tier
         - back-tier
   node2:
-    build: ./WebApp
+    build: ./web_app
     ports:
         - "3000"
     depends_on:
@@ -34,7 +34,7 @@ services:
         - front-tier
         - back-tier
   node3:
-    build: ./WebApp
+    build: ./web_app
     ports:
         - "3000"
     depends_on:
