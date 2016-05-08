@@ -23,7 +23,7 @@ RUN /usr/local/bin/plugins.sh /var/jenkins_home/plugins.txt
 
 #USER root
 # export DOCKER_HOST environment variable
-#ARG DOCKER_HOST
+ARG DOCKER_HOST
 ENV DOCKER_HOST=$DOCKER_HOST
 # so that jenkins can access docker daemon on docker-machine
 # docker reads client certs from this location
