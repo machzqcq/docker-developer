@@ -1,7 +1,7 @@
 # Docker file for Ubuntu with RVM
 FROM ubuntu:14.04
 
-MAINTAINER 
+MAINTAINER Pradeep Macharla <pradeep@seleniumframework.com> 
 
 #Enable as jenkins slave
 # Install a basic SSH server
