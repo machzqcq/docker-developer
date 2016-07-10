@@ -7,7 +7,7 @@ MAINTAINER Pradeep Macharla <pradeep@seleniumframework.com>
 #Enable as jenkins slave
 # Install a basic SSH server
 RUN apt-get update && \
-    apt-get install -y openssh-server curl tar vim git
+    apt-get install -y openssh-server curl tar vim git libgmp3-dev
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN mkdir -p /var/run/sshd
 
