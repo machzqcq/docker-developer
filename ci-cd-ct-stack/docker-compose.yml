@@ -7,7 +7,7 @@ services:
   jenkins: 
     build: 
       context: ./jenkins2.0
-      dockerfile: jenkins_tls.dockerfile
+      dockerfile: jenkins2_tls.dockerfile
       args:
         DOCKER_HOST: $DOCKER_HOST
     volumes:
