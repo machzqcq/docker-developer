@@ -1,4 +1,5 @@
 # Docker file for Ubuntu with RVM
+# docker build -t "myrvm" -f rvm_test.dockerfile .
 FROM ubuntu:14.04
 
 MAINTAINER Pradeep Macharla <pradeep@seleniumframework.com> 
@@ -14,19 +15,25 @@ RUN apt-get install -y openjdk-7-jdk
 
 # Add user jenkins to the image
 RUN useradd -m jenkins  -s /bin/bash -p jenkins
+RUN groupadd rvm
+RUN usermod -G rvm,sudo jenkins
 # Set password for the jenkins user (you may want to alter this).
-RUN echo "jenkins:jenkins" | chpasswd
+RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Install RVM and add to jenkins profile
+
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.0
+RUN echo 'gem: --no-ri --no-rdoc' > ~/.gemrc
+RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
+RUN echo "source /usr/local/rvm/scripts/rvm" >> /home/jenkins/.bash_profile
+RUN echo "source /usr/local/rvm/scripts/rvm" >> /home/jenkins/.profile
+
 
 # Standard SSH port
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
 
-# Install RVM and add to jenkins profile
 
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
-RUN \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.0
-RUN echo "source /usr/local/rvm/scripts/rvm" >> /home/jenkins/.bash_profile
-RUN chown -R jenkins:jenkins /home/jenkins/.bash_profile
-RUN chown -R jenkins:jenkins /usr/local/rvm
  
